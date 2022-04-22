@@ -2,13 +2,22 @@
   "name": "asi_api_platform",
   "version": "1.0.0",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.0",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
+    "express-async-handler": "^1.2.0",
     "mongodb": "^4.5.0",
-    "mongoose": "^6.2.10"
+    "mongoose": "^6.2.10",
+    "npmlog": "^6.0.1",
+    "swagger": "^0.7.5",
+    "swagger-autogen": "^2.21.1",
+    "swagger-doc": "^0.3.0",
+    "swagger-docs": "0.0.0-alpha2",
+    "swagger-ui-express": "^4.3.0"
   },
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "swagger-docs": "node swagger.js"
   }
 }
