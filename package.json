@@ -19,5 +19,8 @@
   "scripts": {
     "start": "node src/index.js",
     "swagger-docs": "node swagger.js"
+  },
+  "devDependencies": {
+    "prettier": "2.6.2"
   }
 }
