@@ -4,7 +4,29 @@ const Task = require("../../models/task.model");
 const mongoose = require("mongoose");
 
 class SkillController {
+  async getAvailableSkills(req, res){
+    /*
+      #swagger.description = 'Endpoint for retrieving available skills'
+      #swagger.tags = ['Skill']
+    */
+    console.log("CALLED GET AVAILABLE SKILLS")
+    console.log("REQ:" + req.body)
+    res.status(501).json({
+      response: "Not implemented yet!"
+    })
+  }
+
   async getSkillsInProgress(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving in-progress skills'
+      #swagger.tags = ['Skill']
+      #swagger.responses[200] = {
+          description: 'A collection of skills',
+          schema: [{
+            $ref: '#/definitions/Skill'
+          }]
+      }
+    */
     console.log("GET /skillsInProgress");
 
     const user = await User.findById(req.headers["userid"]);
@@ -17,6 +39,16 @@ class SkillController {
   }
 
   async getSkills(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving skills'
+      #swagger.tags = ['Skill']
+      #swagger.responses[200] = {
+          description: 'A collection of skills',
+          schema: [{
+            $ref: '#/definitions/Skill'
+          }]
+      }
+    */
     console.log("GET /skills");
 
     const skills = await Skill.find({});
@@ -32,6 +64,16 @@ class SkillController {
   }
   
   async getAllInList(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving all skills'
+      #swagger.tags = ['Skill']
+      #swagger.responses[200] = {
+          description: 'A collection of skills',
+          schema: [{
+            $ref: '#/definitions/Skill'
+          }]
+      }
+    */
     console.log("GET /skills/getAllInList");
 
     const skillIDs = req.headers.skills.replace(/\s/g, "").split(",");
@@ -46,6 +88,10 @@ class SkillController {
   }
 
   async startSkill(req, res) {
+    /*
+      #swagger.description = 'Endpoint for starting a skill'
+      #swagger.tags = ['Skill']
+    */
     console.log("POST /skills/startSkill");
 
     //Get skill to star
@@ -68,6 +114,10 @@ class SkillController {
   }
 
   async skipSkill(req, res) {
+    /*
+      #swagger.description = 'Endpoint for skipping a skill'
+      #swagger.tags = ['Skill']
+    */
     console.log("POST /skills/skipSkill");
 
     //complete without XP
@@ -79,6 +129,10 @@ class SkillController {
   }
 
   async revertSkill(req, res) {
+    /*
+      #swagger.description = 'Endpoint for reverting a skill'
+      #swagger.tags = ['Skill']
+    */
     console.log("POST /skills/revertSkill");
     //Get skill to revoke
     const skill = await Skill.findById(req.body.skillID);
@@ -92,6 +146,10 @@ class SkillController {
   }
 
   async cancelSkill(req,res) {
+    /*
+      #swagger.description = 'Endpoint for cancelling a skill'
+      #swagger.tags = ['Skill']
+    */
     console.log("POST /skills/cancel");
 
     await User.findByIdAndUpdate(req.body.userid,{
@@ -110,6 +168,16 @@ class SkillController {
   }
 
   async createSkill(req, res) {
+    /*
+      #swagger.description = 'Endpoint for creating a skill'
+      #swagger.tags = ['Skill']
+      #swagger.responses[201] = {
+          description: 'A skill object',
+          schema: {
+            $ref: '#/definitions/Skill'
+          }
+      }
+    */
     console.log("POST /skills/create");
 
     const skill = new Skill(req.body);
@@ -135,6 +203,10 @@ class SkillController {
   }
 
   async updateSkill(req, res) {
+    /*
+      #swagger.description = 'Endpoint for updating a skill'
+      #swagger.tags = ['Skill']
+    */
     console.log("POST /skills/update");
 
     Skill.findByIdAndUpdate(req.body.id,
@@ -153,6 +225,10 @@ class SkillController {
   }
 
   async deleteSkill(req, res) {
+    /*
+      #swagger.description = 'Endpoint for deleting a skill'
+      #swagger.tags = ['Skill']
+    */
     console.log("POST /skills/delete");
 
     Skill.findByIdAndDelete(req.body.id);

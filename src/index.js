@@ -1,9 +1,10 @@
-require("dotenv").config();
+require('dotenv').config();
 const log = require("npmlog");
-const express = require("express");
+const express = require('express');
+const morgan = require("morgan")
 
-const expressLoader = require("./loaders/expressLoader");
-const mongooseLoader = require("./loaders/mongooseLoader");
+const expressLoader = require('./loaders/expressLoader');
+const mongooseLoader = require('./loaders/mongooseLoader');
 
 const swaggerUI = require("swagger-ui-express");
 const swaggerFile = require("../swagger-output.json");
@@ -23,6 +24,7 @@ log.info(`Environment-type:${process.env.ENVIRONMENT_TYPE}`);
 if (process.env.ENVIRONMENT_TYPE === "development") {
   const swagger_port = parseInt(PORT)+1;
   app.use(cors());
+  app.use(morgan("tiny"))
   app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerFile, {explorer:true}));
   log.info(`API documentation: http://localhost:${swagger_port}/api-docs`);
   app.listen(swagger_port, () => log.info(`Swagger: Listening on port ${swagger_port}`));

@@ -1,0 +1,17 @@
+version: '3'
+services:
+  apiplatform: 
+    image: skilltree
+    ports:
+    - "8080:8080"
+    environment: 
+    - DB_SERVER_URL=mongodb
+  mongodb:
+    image: mongo:5.0
+    ports:
+      - "27017:27017"
+    volumes:
+      - .:/mongodb_data
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=AzureDiamond
+      - MONGO_INITDB_ROOT_PASSWORD=hunter2

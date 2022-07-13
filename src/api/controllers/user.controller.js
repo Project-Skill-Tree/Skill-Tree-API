@@ -7,8 +7,11 @@ const {levelDiff} = require("../../modules/XPHandler");
 
 
 class UserController {
-  
   async profile(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving a user's profile'
+      #swagger.tags = ['User']
+    */
     console.log("GET /users/profile");
     const user = await User.findById(req.headers["id"])
       .populate({path: "completed", model: Skill})
@@ -25,6 +28,10 @@ class UserController {
   }
 
   async authUserDiscord(req, res) {
+    /*
+      #swagger.description = 'Endpoint for authenticating a user's discord account'
+      #swagger.tags = ['User']
+    */
     console.log("GET /users/loginDiscord");
 
     const user = await User.findOne({ discordid: req.headers["discordid"] });
@@ -41,14 +48,14 @@ class UserController {
   async authUser(req, res) {
     /*
         #swagger.description = 'Endpoint for authentifying a User'
-        #swagger.tags = ['User']
         #swagger.produces = ['application/json']
         #swagger.parameters['username'] = {
             in: 'query',
             required: 'false',
             type: 'string',
-            description: 'Username' 
+            description: 'Username'
         }
+        #swagger.tags = ['User']
         #swagger.parameters['password'] = {
             in: 'query',
             required: 'false',
@@ -57,7 +64,7 @@ class UserController {
         } 
         #swagger.responses[200] = {
             out: ['username','_id']
-            description: "User authentified successfully." 
+            description: "User authenticated successfully."
         }
         #swagger.responses[401] = {
           description: "User not found."
@@ -145,6 +152,10 @@ class UserController {
   }
 
   async registerDiscord(req, res) {
+    /*
+      #swagger.description = 'Endpoint for registering a user's discord account'
+      #swagger.tags = ['User']
+    */
     console.log("POST /users/registerDiscord");
 
     const userExists = await User.findOne({ discordid: req.body.discordid });
@@ -175,7 +186,7 @@ class UserController {
 
   async updateUserProfile() {
     /* 
-    #swagger.description = 'Endpoint for editing a User'
+    #swagger.description = 'Endpoint for updating a user's profile'
     #swagger.tags = ['User']
     #swagger.responses[201] = { description: 'User edited successfully.' }
     #swagger.produces = ['application/json']
@@ -210,7 +221,7 @@ class UserController {
 
   async removeUser(req,res) {
     /* 
-        #swagger.description = 'Endpoint for deleting a User'
+        #swagger.description = 'Endpoint for removing a user'
         #swagger.tags = ['User']
         #swagger.responses[201] = { description: 'User deleted successfully.' }
         #swagger.produces = ['application/json']
@@ -242,6 +253,10 @@ class UserController {
    * @param skillID
    */
   async completeSkill(userID, skillID) {
+    /*
+      #swagger.description = 'Endpoint for completing a user's skill'
+      #swagger.tags = ['User']
+    */
     const skill = await Skill.findById(skillID);
 
     const user = await User.findByIdAndUpdate(userID, {
@@ -254,6 +269,10 @@ class UserController {
   }
 
   async updateXPHistory(req, res) {
+    /*
+      #swagger.description = 'Endpoint for updating the xp history of a user'
+      #swagger.tags = ['User']
+    */
     console.log("POST /users/updateXPHistory");
 
     const user = await User.findByIdAndUpdate(req.body.id, {
@@ -265,6 +284,10 @@ class UserController {
 
   // adds  XP to a given user
   async addXP(id, xp) {
+    /*
+      #swagger.description = 'Endpoint for adding xp to a user'
+      #swagger.tags = ['User']
+    */
     const user = await User.findByIdAndUpdate(id, {
       $inc : {"xp" : xp}
     });
@@ -273,6 +296,10 @@ class UserController {
   }
 
   async updateUser(req, res) {
+    /*
+      #swagger.description = 'Endpoint for updating a user'
+      #swagger.tags = ['User']
+    */
     console.log("POST /users/updateUser");
 
     const user = await User.findByIdAndUpdate(req.body.userid, {"$set":{
@@ -286,6 +313,10 @@ class UserController {
   }
 
   async updateTimezone(req, res) {
+    /*
+      #swagger.description = 'Endpoint for updating a user's timezone'
+      #swagger.tags = ['User']
+    */
     console.log("POST /users/updateTimezone");
 
     const user = await User.findByIdAndUpdate(req.body.id, {
@@ -296,6 +327,10 @@ class UserController {
   }
 
   async updateBaseLocation(req, res) {
+    /*
+      #swagger.description = 'Endpoint for updating a user's base location'
+      #swagger.tags = ['User']
+    */
     console.log("POST /users/updateBaseLocation");
 
     const user = await User.findByIdAndUpdate(req.body.id, {
@@ -306,6 +341,10 @@ class UserController {
   }
 
   async getAll(req, res) {
+    /*
+      #swagger.description = 'Endpoint for getting all users'
+      #swagger.tags = ['User']
+    */
     console.log("GET /users/getAll");
 
     const users = await User.find({});
@@ -317,6 +356,10 @@ class UserController {
   }
 
   async getAllInTimezone(req, res) {
+    /*
+      #swagger.description = 'Endpoint for getting all the users in a timezone'
+      #swagger.tags = ['User']
+    */
     console.log("GET /users/getAllInTimezone");
 
     const users = await User.find({
@@ -329,6 +372,10 @@ class UserController {
   }
 
   async getAvailable(req, res) {
+    /*
+      #swagger.description = 'Endpoint for getting available skills and challenges of a user'
+      #swagger.tags = ['User']
+    */
     console.log("GET /users/available");
 
     const user = await User.findById(req.headers["id"]);

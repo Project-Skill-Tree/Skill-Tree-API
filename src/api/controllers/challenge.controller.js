@@ -2,6 +2,16 @@ const Challenge = require("../../models/challenge.model");
 
 class ChallengeController {
   async getChallenges(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving challenges'
+      #swagger.tags = ['Challenge']
+      #swagger.response[200] = {
+          description: 'Retrieves a challenge',
+          schema: {
+            $ref: '#/definitions/Challenge'
+          }
+      }
+    */
     console.log("GET /challenges");
 
     const challenges = await Challenge.find({});
@@ -12,6 +22,16 @@ class ChallengeController {
   }
 
   async createChallenge(req, res) {
+    /*
+      #swagger.description = 'Endpoint for creating a challenge'
+      #swagger.tags = ['Challenge']
+      #swagger.response[200] = {
+          description: 'Retrieves the newly created challenge',
+          schema: {
+            $ref: '#/definitions/Challenge'
+          }
+      }
+    */
     console.log("POST /challenges/create");
 
     const challenge = new Challenge(req.body);
@@ -23,6 +43,10 @@ class ChallengeController {
   }
 
   async updateChallenge(req, res) {
+    /*
+      #swagger.description = 'Endpoint for updating a challenge'
+      #swagger.tags = ['Challenge']
+    */
     console.log("POST /challenges/update");
 
     const challenge = Challenge.findByIdAndUpdate(req.body.id,
@@ -34,6 +58,10 @@ class ChallengeController {
   }
 
   async deleteChallenge(req, res) {
+    /*
+      #swagger.description = 'Endpoint for deleting a challenge'
+      #swagger.tags = ['Challenge']
+    */
     console.log("POST /challenges/delete");
 
     Challenge.findByIdAndDelete(req.body.id);

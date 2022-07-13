@@ -1,5 +1,5 @@
 require("dotenv").config();
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 function load() {
   mongoose.connection.on("connect", () => console.log("MongoDB connected"));

@@ -84,6 +84,11 @@ const UserSchema = new Schema({
     default: 0,
     required: true,
   },
+  dm_enabled:{
+    type:Boolean,
+    default: true,
+    required:true
+  },
 },
 {collection:"Users"}
 );

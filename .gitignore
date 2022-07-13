@@ -132,3 +132,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+# Some local caching stuff
+.dccache
+
+# Swagger-output.json
+swagger-output.json

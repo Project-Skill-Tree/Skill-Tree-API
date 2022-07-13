@@ -4,6 +4,10 @@ const Challenge = require("../../models/challenge.model");
 
 class Controller {
   async getNodes(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving nodes (development only?)'
+      #swagger.tags = ['Controller']
+    */
     console.log("GET /getNodes");
 
     const skills = await Skill.find({});

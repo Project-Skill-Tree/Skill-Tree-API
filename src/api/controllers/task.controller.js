@@ -8,6 +8,16 @@ const {getDaysBetweenDates, dayToDate} = require("../../modules/dateHelper");
 class TaskController {
 
   async currentTasks(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving current tasks'
+      #swagger.tags = ['Task']
+      #swagger.responses[200] = {
+          description: 'A collection of tasks',
+          schema: [{
+            $ref: '#/definitions/Task'
+          }]
+      }
+    */
     console.log("GET /tasks/currentTasks");
 
     const tasks = await Task.find({
@@ -43,6 +53,16 @@ class TaskController {
   }
 
   async recentTasks(req, res) {
+    /*
+      #swagger.description = 'Endpoint for retrieving recent tasks'
+      #swagger.tags = ['Task']
+      #swagger.responses[200] = {
+          description: 'A collection of tasks',
+          schema: [{
+            $ref: '#/definitions/Task'
+          }]
+      }
+    */
     console.log("GET /tasks/recentTasks");
 
     const user = await User.findById(req.headers["userid"]);
@@ -68,6 +88,16 @@ class TaskController {
   }
 
   async updateTask(req, res) {
+    /*
+      #swagger.description = 'Endpoint for updating a task'
+      #swagger.tags = ['Task']
+      #swagger.responses[200] = {
+          description: 'The updated tasks',
+          schema: [{
+            $ref: '#/definitions/Task'
+          }]
+      }
+    */
     console.log("POST /tasks/updateTask");
 
     const task = await Task.findById(req.body.taskid);
@@ -166,6 +196,10 @@ class TaskController {
   }
 
   async deleteTask(req,res) {
+    /*
+      #swagger.description = 'Endpoint for deleting a task'
+      #swagger.tags = ['Task']
+    */
     console.log("POST /tasks/deleteTask");
     await Task.findByIdAndDelete(req.body.taskid);
     res.status(200).json({response: "success"});
