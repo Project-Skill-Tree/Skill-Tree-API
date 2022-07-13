@@ -21,6 +21,11 @@ class Controller {
       root: root,
     });
   }
+
+  async getStatus(req, res){
+    console.log("GET /status")
+    res.status(200).json({response: "success"})
+  }
 }
 
 module.exports = new Controller();
